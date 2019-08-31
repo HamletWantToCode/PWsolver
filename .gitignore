@@ -1,0 +1,23 @@
+# OSX
+*.DS_store
+
+# Byte-compiled files
+*.pyc
+__pycache__/
+
+# Packaging
+*.egg-info/
+build/
+dist/
+
+# Unit test
+.cache
+
+# Sphinx
+docs/build/
+
+# VScode
+.vscode/
+
+# old files
+**/old
