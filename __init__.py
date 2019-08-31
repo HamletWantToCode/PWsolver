@@ -1,4 +1,4 @@
-from lattice import Lattice
-from solver import solve
+from .lattice import Lattice
+from .solver import solve
 
 __all__ = ['Lattice', 'solve']
