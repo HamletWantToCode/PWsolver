@@ -1,4 +1,4 @@
-import numpy as np 
+import numpy as np
 
 class Lattice(object):
     """
@@ -12,7 +12,7 @@ class Lattice(object):
         self._reciprocal()
         self.n_kpoints = n_kpoints
         self.n_basis = n_basis
-    
+
     def _reciprocal(self):
         Rotation = np.array([[0.0, -1.0], [1.0, 0.0]])   # rotate a vector 90 degree anti-clock wise
         a1 = self.primitive_cell[:, 0]
@@ -61,7 +61,7 @@ class Lattice(object):
         bs = self.reciprocal_cell
         num_sym_points = high_sym_points.shape[1]
         path = []
-        for i in range(num_sym_points):
+        for i in range(num_sym_points-1):
             start = high_sym_points[:, i]
             stop = high_sym_points[:, i+1]
             line = np.vstack([np.linspace(start[0], stop[0], 20), np.linspace(start[1], stop[1], 20)])
