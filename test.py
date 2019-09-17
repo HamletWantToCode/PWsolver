@@ -8,7 +8,7 @@ def test_Vq(n_basis, V0):
     """
     V(x) = cos(K1*x)**2 + cos(K2*x)**2 + cos((K1+K2)*x)**2
     """
-    Vq = np.zeros([n_basis[1], n_basis[0]], dtype=np.complex64)  # in meshgrid we use 'xy' convention, which is in reverse order to 'ij'
+    Vq = np.zeros([n_basis[1], n_basis[0]], dtype=np.complex128)  # in meshgrid we use 'xy' convention, which is in reverse order to 'ij'
     Vq[0, 1] = Vq[0, -1] = -V0 * 0.25
     Vq[1, 0] = Vq[-1, 0] = -V0 * 0.25
     Vq[1, 1] = Vq[-1, -1] = -V0 * 0.25

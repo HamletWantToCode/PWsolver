@@ -9,13 +9,13 @@ def hamilton(k, V_KxKy, fourier_grids):
     """
     hamilton_size = fourier_grids.shape[1]
     Ek_kK = 0.5 * np.sum((k[:, np.newaxis] + fourier_grids)**2, axis=0)
-    Hamiltonian_matrix = np.zeros([hamilton_size, hamilton_size], dtype=np.complex64)
+    Hamiltonian_matrix = np.zeros([hamilton_size, hamilton_size], dtype=np.complex128)
     np.fill_diagonal(Hamiltonian_matrix, Ek_kK)
 
     n_Ky, n_Kx = V_KxKy.shape    # since we use 'xy' mode in meshgrid
     for d_Kx in range(n_Kx//2+1):
         V_Ky = V_KxKy[:, d_Kx]
-        VKxi_matrix = np.zeros([n_Ky, n_Ky], dtype=np.complex64)
+        VKxi_matrix = np.zeros([n_Ky, n_Ky], dtype=np.complex128)
         np.fill_diagonal(VKxi_matrix, V_Ky[0])
         for d_Ky in range(1, n_Ky//2+1):
             np.fill_diagonal(VKxi_matrix[d_Ky:, :-d_Ky], V_Ky[d_Ky].conj())
@@ -31,7 +31,7 @@ def solve(lattice, V_KxKy, ne):
     num_cell = brillouin_zone.shape[1]
     Ek = 0
     density_matrix_size = fourier_grids.shape[1]
-    density_matrix = np.zeros([density_matrix_size, density_matrix_size], dtype=np.complex64)
+    density_matrix = np.zeros([density_matrix_size, density_matrix_size], dtype=np.complex128)
     
     
     for k in brillouin_zone.T:
@@ -43,7 +43,7 @@ def solve(lattice, V_KxKy, ne):
         Ek += np.trace(np.diag(Ek_kK) @ rho_kK1K2)
     
     n_Ky, n_Kx = V_KxKy.shape          # since we use 'xy' mode in meshgrid
-    rho_rKxKy = np.zeros([n_Ky, n_Kx//2+1], dtype=np.complex64)
+    rho_rKxKy = np.zeros([n_Ky, n_Kx//2+1], dtype=np.complex128)
     for i in range(n_Kx//2+1):
         if i == 0:
             rho_rKxKy[0, 0] = np.trace(density_matrix)
