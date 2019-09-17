@@ -1,4 +1,5 @@
 import numpy as np 
+from scipy.sparse.linalg import eigsh
 from lattice import Lattice
 from solver import hamilton, solve
 import matplotlib.pyplot as plt 
@@ -30,15 +31,16 @@ band_gaps = []
 for V0 in V0s:
     V_KxKy = test_Vq(n_basis, V0)
     _, H_kK1K2 = hamilton(k_K, V_KxKy, hexagonal_fourier_grids)
-    E_k, _ = np.linalg.eigh(H_kK1K2)
-    band_gaps.append(E_k[1] - E_k[0])
+    E_k, _ = eigsh(H_kK1K2, k=2, which='SA')
+    E_LOMO, E_HOMO = np.amax(E_k), np.amin(E_k)
+    band_gaps.append(E_LOMO - E_HOMO)
 
 Nes = np.arange(1, 10, 1)
 Eks = []
 TF_Eks = []
 zero_V_KxKy = test_Vq(n_basis, 0)
 for ne in Nes:
-    Ek, _ = solve(hexagonal_lattice, zero_V_KxKy, ne)
+    _, Ek, _ = solve(hexagonal_lattice, zero_V_KxKy, ne)
     Eks.append(Ek)
     TF_Eks.append(np.pi * (ne**2) * 2 / np.sqrt(3))
 

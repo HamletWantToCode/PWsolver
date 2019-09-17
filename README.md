@@ -6,6 +6,10 @@ Schrodinger equation solver using plane wave method, currently support 2D system
 - [ ] support 1D system
 
 ## Changelog
+### 0.0.2 - 2019.09.17
+- solver.py:
+    - `hamilton`: replace full numpy array with `scipy.sparse` matrix
+    - `solve`: replace the `np.linalg.eigh` by `scipy.sparse.linalg.eigsh`
 ### 0.0.1 - 2019.08.31
 - lattice.py: create 2D Bravais lattice with given primitive cell, parameters include `primitive_cell`, `n_kpoints` (used to build up Brillouine zone), `n_basis` (used to build up reciprocal space grids for FFT).
 - solver.py: 
