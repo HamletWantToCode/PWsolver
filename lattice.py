@@ -5,8 +5,7 @@ class Lattice(object):
     2D lattice class
     """
     __slots__ = ['primitive_cell', 'n_kpoints', 'n_basis',
-                 '_reciprocal', 'brillouin_zone', 'fourier_grids',
-                 'realSpace_zone', 'high_symmetry_path']
+                 'reciprocal_cell']
 
     def __init__(self, primitive_cell, n_kpoints, n_basis):
         """
