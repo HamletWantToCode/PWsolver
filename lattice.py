@@ -4,6 +4,10 @@ class Lattice(object):
     """
     2D lattice class
     """
+    __slots__ = ['primitive_cell', 'n_kpoints', 'n_basis',
+                 '_reciprocal', 'brillouin_zone', 'fourier_grids',
+                 'realSpace_zone', 'high_symmetry_path']
+
     def __init__(self, primitive_cell, n_kpoints, n_basis):
         """
         :primitive cell: np.ndarray, each column represents a direction

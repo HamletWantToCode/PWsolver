@@ -6,6 +6,8 @@ Schrodinger equation solver using plane wave method, currently support 2D system
 - [ ] support 1D system
 
 ## Changelog
+### 0.0.3 - 2019.09.18
+- lattice.py: use `__slots__` in definition of `Lattice` class to speed up the initiation process
 ### 0.0.2 - 2019.09.17
 - solver.py:
     - `hamilton`: replace full numpy array with `scipy.sparse` matrix
